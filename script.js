@@ -69,7 +69,7 @@ button.addEventListener("click", () => {
     button.textContent = "sending love...";
     
     // Using your Formspree link to bypass PHP limitations on GitHub
-    fetch('https://formspree.io/f/mreabzwn', {
+    fetch('https://formspree.io/f/xaqdnyne', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
