@@ -66,21 +66,31 @@ const button = document.getElementById("valentinesButton");
 
 button.addEventListener("click", () => {
   if (button.textContent === "Click Me! ❤") {
-    button.textContent = "loading...";
-    fetch('send_mail.php')
-      .then(response => {
-        if (response.ok) {
-          button.textContent = "Check Your Email Beautiful <3";
-        } else {
-          console.error('Failed to send email');
-          button.textContent = "Error 😞";
-        }
+    button.textContent = "sending love...";
+    
+    // Using your Formspree link to bypass PHP limitations on GitHub
+    fetch('https://formspree.io/f/mreabzwn', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        subject: "A special message for you... ❤️",
+        message: "Happy Valentine's Day My Love. I love you so much. You are truly the best thing that has ever happened to me. ❤️"
       })
-      .catch(error => {
-        // Handle network errors or other issues
-        console.error('Error:', error);
+    })
+    .then(response => {
+      if (response.ok) {
+        button.textContent = "Check Your Email Beautiful <3";
+      } else {
         button.textContent = "Error 😞";
-      });
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      button.textContent = "Error 😞";
+    });
   }
 });
 
